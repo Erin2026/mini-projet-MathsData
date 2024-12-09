@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from descente_stochastique import GradientDescent
+from descente_stochastique_gpt import GradientDescent
 
 
 def sigmoid(z):
