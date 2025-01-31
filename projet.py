@@ -125,10 +125,11 @@ accuracy_custom = np.mean(y_pred_custom == y_test_labels)
 
 # Calcul de la matrice de confusion (implémentation personnalisée)
 conf_matrix_custom = confusion_matrix(y_test_labels, y_pred_custom)
-disp_custom = ConfusionMatrixDisplay(conf_matrix_custom,
-                                     display_labels=encoder.categories_[0])
+disp_custom = ConfusionMatrixDisplay(conf_matrix_custom)
 disp_custom.plot(cmap='Blues')
 plt.title("Matrice de confusion - Implémentation personnalisée")
+plt.xlabel("Classe prédite")
+plt.ylabel("Classe réelle")
 plt.show()
 
 # --------------------
@@ -152,10 +153,11 @@ accuracy_sklearn = np.mean(y_pred_sklearn == Y_test_sklearn)
 
 # Calcul de la matrice de confusion (avec sklearn)
 conf_matrix_sklearn = confusion_matrix(Y_test_sklearn, y_pred_sklearn)
-disp_sklearn = ConfusionMatrixDisplay(conf_matrix_sklearn,
-                                      display_labels=encoder.categories_[0])
+disp_sklearn = ConfusionMatrixDisplay(conf_matrix_sklearn)
 disp_sklearn.plot(cmap='Blues')
 plt.title("Matrice de confusion - Sklearn")
+plt.xlabel("Classe prédite")
+plt.ylabel("Classe réelle")
 plt.show()
 
 # --------------------
@@ -168,11 +170,11 @@ print(f"Sklearn : {accuracy_sklearn * 100:.2f}%")
 # --------------------
 # Quelques exemples
 # --------------------
-fig, axes = plt.subplots(2, 5, figsize=(10, 5))
+fig, axes = plt.subplots(2, 5, figsize=(16, 8))
 for i, ax in enumerate(axes.flat):
     ax.imshow(X_test[i, 1:].reshape(8, 8), cmap='gray')
-    ax.set_title(f'True label: {y_test_labels[i]}\n'
-                 f'Custom GD: {y_pred_custom[i]}\n'
-                 f'Sklearn GD: {y_pred_sklearn[i]}')
+    ax.set_title(f'Vrai chiffre: {y_test_labels[i]}\n'
+                 f'Notre descente: {y_pred_custom[i]}\n'
+                 f'Descente Sklearn: {y_pred_sklearn[i]}')
     ax.axis('off')
 plt.show()
